@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Graphic Designer Portfolio - Color Effectz</title>
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Bootstrap (for Modal and Carousel) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+    <style>
+        body {
+            background-color: #0f1115;
+            color: #e5e7eb;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        h2.section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            color: #fff;
+            margin-bottom: 2.5rem;
+            text-shadow: 0 0 15px rgba(37, 99, 235, 0.5);
+        }
+
+        /* Navbar */
+        .nav-link {
+            color: #a1a1aa !important;
+            transition: 0.3s;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: #2563eb !important;
+        }
+
+        /* Service */
+        .service-card {
+            background: linear-gradient(145deg, #1a1c20, #0d0f12);
+            border-radius: 1rem;
+            transition: 0.4s;
+            box-shadow: 4px 4px 10px #0a0b0e, -4px -4px 10px #1c1f24;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card:hover {
+            transform: translateY(-6px) scale(1.03);
+            box-shadow: 6px 6px 15px #0a0b0e, -6px -6px 15px #1c1f24;
+        }
+
+        /* Clients */
+        .client-logo {
+            filter: grayscale(100%);
+            opacity: 0.6;
+            transition: 0.4s;
+            border-radius: 0.75rem;
+        }
+
+        .client-logo:hover {
+            filter: grayscale(0%);
+            opacity: 1;
+            transform: scale(1.08);
+            box-shadow: 0 0 20px rgba(37, 99, 235, 0.3);
+        }
+
+        /* Project */
+        .project-card {
+            position: relative;
+            border-radius: 1rem;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.4s ease;
+            border-radius: inherit;
+        }
+
+        .project-card:hover img {
+            transform: scale(1.1);
+            opacity: 0.85;
+        }
+
+        /* Project name below image */
+        .project-name {
+            margin-top: 0.5rem;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #e5e7eb;
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+            user-select: none;
+        }
+
+        /* Button */
+        .btn {
+            background-color: #2563eb;
+            color: #fff;
+            padding: 10px 24px;
+            border-radius: 8px;
+            transition: 0.3s;
+            font-weight: 500;
+        }
+
+        .btn:hover {
+            background-color: #1e40af;
+        }
+
+        /* Modern Pretty Button */
+        .pretty-btn {
+            display: inline-block;
+            background: linear-gradient(90deg, #2563eb, #1d4ed8);
+            color: #fff;
+            padding: 12px 30px;
+            border-radius: 9999px;
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+            border: none;
+            outline: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(37, 99, 235, 0.4);
+        }
+
+        .pretty-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 0 25px rgba(37, 99, 235, 0.7);
+            background: linear-gradient(90deg, #1e3a8a, #2563eb);
+        }
+
+        .pretty-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* Contact Input */
+        input,
+        textarea {
+            background-color: #181a1f;
+            border: 1px solid #2a2c31;
+            color: #fff;
+            padding: 10px;
+            border-radius: 8px;
+            width: 100%;
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 5px rgba(37, 99, 235, 0.6);
+        }
+
+        footer {
+            border-top: 1px solid #2a2c31;
+        }
+
+        /* Modal specific styles */
+        .modal-content {
+            background-color: #121318 !important;
+            border: none !important;
+            border-radius: 1rem !important;
+        }
+
+        .modal-header {
+            border-bottom: none !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            padding-bottom: 0 !important;
+            position: relative;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: white;
+            text-align: center;
+        }
+
+        .modal-header hr {
+            width: 60px;
+            border-top: 3px solid #2563eb;
+            border-radius: 9999px;
+            margin-bottom: 1rem;
+            opacity: 0.8;
+        }
+
+        .btn-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            filter: invert(1);
+        }
+
+        .modal-body p {
+            color: #cbd5e1;
+            font-size: 1rem;
+            text-align: center;
+            margin-top: 1rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.5;
+        }
+
+        /* Carousel controls custom */
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            background-color: #2563eb;
+            border-radius: 50%;
+            padding: 10px;
+            filter: drop-shadow(0 0 2px rgba(37, 99, 235, 0.8));
+        }
+
+        .carousel-inner img {
+            border-radius: 0 0 1rem 1rem;
+            object-fit: cover;
+            height: 400px;
+            width: 100%;
+        }
+
+        /* Hero dark line shadow effect */
+        #home h1,
+        #home p {
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+        }
+
+        /* Contact section two columns */
+        #contact .contact-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3rem;
+            padding: 0 1rem;
+        }
+
+        #contact .contact-form {
+            flex: 1 1 400px;
+        }
+
+        #contact .contact-info {
+            flex: 1 1 350px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            color: #cbd5e1;
+            user-select: none;
+        }
+
+        #contact .contact-info h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #2563eb;
+            text-shadow: 0 0 10px #2563eb;
+        }
+
+        #contact .contact-info p {
+            font-size: 1.1rem;
+            margin-bottom: 1.2rem;
+            line-height: 1.5;
+        }
+
+        /* Responsive for smaller devices */
+        @media (max-width: 768px) {
+            #contact .contact-container {
+                flex-direction: column;
+            }
+
+            #contact .contact-info,
+            #contact .contact-form {
+                flex: 1 1 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <header class="flex justify-between items-center p-6 bg-[#181a1f] shadow-md sticky top-0 z-50">
+        <h1 class="text-2xl font-bold text-white">🎨 Color Effectz</h1>
+        <nav class="space-x-6 hidden md:flex">
+            <a href="#home" class="nav-link active">Home</a>
+            <a href="#service" class="nav-link">Service</a>
+            <a href="#clients" class="nav-link">Clients</a>
+            <a href="#project" class="nav-link">Project</a>
+            <a href="#contact" class="nav-link">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section id="home"
+        class="h-[70vh] flex flex-col justify-center items-center bg-gradient-to-br from-[#111318] to-[#0b0c0f] text-center px-4">
+        <h1 class="text-5xl font-bold text-white mb-4">Professional Graphic Designer</h1>
+        <p class="text-gray-400 text-lg max-w-xl mb-6">
+            We craft stunning visuals, build brands, and create meaningful digital experiences.
+        </p>
+        <a href="#service" class="btn">Explore My Work</a>
+    </section>
+
+    <!-- Services -->
+    <section id="service" class="py-20 px-6">
+        <h2 class="section-title">Our Services</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <div class="service-card p-6 text-center">
+                <img src="https://cdn-icons-png.flaticon.com/512/1046/1046899.png" class="w-16 mx-auto mb-4"
+                    alt="Logo Design" />
+                <h3 class="text-lg font-semibold text-white mb-2">Logo Design</h3>
+                <p class="text-gray-400">Creating memorable and effective logos that stand out.</p>
+            </div>
+            <div class="service-card p-6 text-center">
+                <img src="https://cdn-icons-png.flaticon.com/512/2913/2913208.png" class="w-16 mx-auto mb-4"
+                    alt="Brand Identity" />
+                <h3 class="text-lg font-semibold text-white mb-2">Brand Identity</h3>
+                <p class="text-gray-400">Building a consistent and engaging brand experience.</p>
+            </div>
+            <div class="service-card p-6 text-center">
+                <img src="https://cdn-icons-png.flaticon.com/512/1324/1324424.png" class="w-16 mx-auto mb-4"
+                    alt="Social Media" />
+                <h3 class="text-lg font-semibold text-white mb-2">Social Media Campaigns</h3>
+                <p class="text-gray-400">Designing vibrant visuals for social media marketing.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Clients -->
+    <section id="clients" class="py-20 px-6 bg-[#121318]">
+        <h2 class="section-title">Clients</h2>
+        <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-6 max-w-6xl mx-auto">
+            <img class="client-logo" src="https://meridianholidaysbd.com/uploads/grouptour/grouptour_1760681574.jpg"
+                alt="Instagram" />
+            <img class="client-logo" src="https://meridianholidaysbd.com/uploads/grouptour/grouptour_1760681574.jpg"
+                alt="Facebook" />
+            <img class="client-logo" src="https://meridianholidaysbd.com/uploads/grouptour/grouptour_1760681574.jpg"
+                alt="Netflix" />
+            <img class="client-logo" src="https://meridianholidaysbd.com/uploads/grouptour/grouptour_1760681574.jpg"
+                alt="Google" />
+            <img class="client-logo" src="https://meridianholidaysbd.com/uploads/grouptour/grouptour_1760681574.jpg"
+                alt="Apple" />
+            <img class="client-logo" src="https://meridianholidaysbd.com/uploads/grouptour/grouptour_1760681574.jpg"
+                alt="AWS" />
+        </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="project" class="py-20 px-6">
+        <h2 class="section-title">Projects</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 max-w-6xl mx-auto">
+
+            <div class="project-card" data-bs-toggle="modal" data-bs-target="#projectModal1" tabindex="0" role="button"
+                aria-label="Open project Brand Identity">
+                <img src="https://picsum.photos/400/300?random=9" alt="Brand Identity Project" />
+                <div class="project-name">Brand Identity</div>
+            </div>
+
+            <div class="project-card" data-bs-toggle="modal" data-bs-target="#projectModal2" tabindex="0" role="button"
+                aria-label="Open project Social Media Campaign">
+                <img src="https://picsum.photos/400/300?random=12" alt="Social Media Campaign Project" />
+                <div class="project-name">Social Media Campaign</div>
+            </div>
+
+            <div class="project-card" data-bs-toggle="modal" data-bs-target="#projectModal3" tabindex="0" role="button"
+                aria-label="Open project Website Redesign">
+                <img src="https://picsum.photos/400/300?random=14" alt="Website Redesign Project" />
+                <div class="project-name">Website Redesign</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Modals -->
+    <div class="modal fade" id="projectModal1" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Brand Identity</h5>
+                    <hr />
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <div id="carouselProject1" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="https://picsum.photos/900/600?random=9" alt="Project Slide 1" />
+                            </div>
+                            <div class="carousel-item">
+                                <img src="https://picsum.photos/900/600?random=10" alt="Project Slide 2" />
+                            </div>
+                            <div class="carousel-item">
+                                <img src="https://picsum.photos/900/600?random=11" alt="Project Slide 3" />
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselProject1"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselProject1"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                    <p>
+                        This brand identity project involved crafting a modern and clean look that reflects the
+                        client's vision.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="projectModal2" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Social Media Campaign</h5>
+                    <hr />
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <div id="carouselProject2" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="https://picsum.photos/900/600?random=12" alt="Project Slide 1" />
+                            </div>
+                            <div class="carousel-item">
+                                <img src="https://picsum.photos/900/600?random=13" alt="Project Slide 2" />
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselProject2"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselProject2"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                    <p>
+                        A vibrant social media campaign designed to boost engagement and brand awareness.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="projectModal3" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Website Redesign</h5>
+                    <hr />
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <div id="carouselProject3" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="https://picsum.photos/900/600?random=14" alt="Project Slide 1" />
+                            </div>
+                            <div class="carousel-item">
+                                <img src="https://picsum.photos/900/600?random=15" alt="Project Slide 2" />
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselProject3"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselProject3"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                    <p>
+                        Full website redesign for a sleek, responsive, and modern user experience.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact -->
+    <section id="contact" class="py-20 bg-[#111318]">
+        <h2 class="section-title">Contact Me</h2>
+        <div class="contact-container">
+            <!-- Left: Form -->
+            <form class="contact-form" id="contactForm" novalidate>
+                <div class="mb-6">
+                    <label for="name" class="block mb-2 font-semibold text-white">Name</label>
+                    <input type="text" id="name" name="name" required class="p-2" placeholder="Your full name" />
+                </div>
+                <div class="mb-6">
+                    <label for="email" class="block mb-2 font-semibold text-white">Email</label>
+                    <input type="email" id="email" name="email" class="p-2" required
+                        placeholder="your.email@example.com" />
+                </div>
+                <div class="mb-6">
+                    <label for="phone" class="block mb-2 font-semibold text-white">Phone</label>
+                    <input type="tel" id="phone" name="phone" class="p-2" placeholder="+1 (555) 123-4567" />
+                </div>
+                <div class="mb-6">
+                    <label for="address" class="block mb-2 font-semibold text-white">Address</label>
+                    <input type="text" id="address" class="p-2" name="address" placeholder="Your address" />
+                </div>
+                <div class="mb-6">
+                    <label for="message" class="block mb-2 font-semibold text-white">Message</label>
+                    <textarea id="message" name="message" class="p-2" rows="5" placeholder="Write your message here..."
+                        required></textarea>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="pretty-btn">Send Message</button>
+                </div>
+            </form>
+
+            <!-- Right: Contact info + Hero banner -->
+            <div class="contact-info px-4">
+                <h3>Get in Touch</h3>
+                <p>Email: <a href="mailto:contact@coloreffectz.com"
+                        class="text-blue-500 hover:underline">contact@coloreffectz.com</a></p>
+                <p>Phone: <a href="tel:+15551234567" class="text-blue-500 hover:underline">+1 (555) 123-4567</a></p>
+                <p>Address: 123 Color St., Design City, Creative Country</p>
+
+                <div
+                    class="mt-10 bg-gradient-to-r from-blue-600 via-blue-500 to-blue-700 rounded-lg p-6 shadow-lg text-white">
+                    <h4 class="text-2xl font-bold mb-3">Let's Create Something Amazing Together</h4>
+                    <p class="text-lg leading-relaxed">Whether you have a project idea or just want to say hello, I’m
+                        here to bring your vision to life with creativity and passion.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-6 px-6 text-center text-gray-500 text-sm">
+        &copy; 2025 Color Effectz. All rights reserved.
+    </footer>
+
+    <script>
+        // Simple form validation for demonstration
+        document.getElementById('contactForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const form = e.target;
+
+            if (!form.name.value.trim()) {
+                alert('Please enter your name.');
+                form.name.focus();
+                return;
+            }
+            if (!form.email.value.trim()) {
+                alert('Please enter your email.');
+                form.email.focus();
+                return;
+            }
+            if (!form.message.value.trim()) {
+                alert('Please enter your message.');
+                form.message.focus();
+                return;
+            }
+
+            alert('Thank you for your message!');
+            form.reset();
+        });
+    </script>
+</body>
+
+</html>
