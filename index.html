@@ -6,13 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Graphic Designer Portfolio - Color Effectz</title>
 
-    <!-- Tailwind -->
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
     <!-- Bootstrap (for Modal and Carousel) -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
     <style>
@@ -28,12 +29,75 @@
         }
 
         h2.section-title {
-            font-size: 2rem;
+            font-size: 2.5rem;
             font-weight: 700;
             text-align: center;
-            color: #fff;
-            margin-bottom: 2.5rem;
-            text-shadow: 0 0 15px rgba(37, 99, 235, 0.5);
+            background: linear-gradient(90deg, var(--primary-blue), var(--secondary-green), var(--accent-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(37, 99, 235, 0.4);
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fadeInUp {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .client-logo {
+            border-radius: 0.75rem;
+            filter: grayscale(100%);
+            opacity: 0.6;
+            transition: all 0.4s ease;
+        }
+
+        .client-logo:hover {
+            filter: grayscale(0%);
+            opacity: 1;
+            transform: scale(1.1);
+            box-shadow: 0 0 20px var(--primary-blue), 0 0 15px var(--accent-pink);
+        }
+
+        #home h1 {
+            background: linear-gradient(90deg, var(--primary-blue), var(--accent-pink), var(--secondary-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(37, 99, 235, 0.7);
+        }
+
+        #home .glow-bg {
+            background: radial-gradient(circle at center, var(--primary-blue)/20, var(--accent-pink)/15, transparent);
+        }
+
+
+        #home p {
+            animation: fadeUp 1.2s ease-out forwards;
+        }
+
+        #home a {
+            animation: fadeUp 1.4s ease-out forwards;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* Navbar */
@@ -103,7 +167,6 @@
             opacity: 0.85;
         }
 
-        /* Project name below image */
         .project-name {
             margin-top: 0.5rem;
             font-weight: 600;
@@ -129,25 +192,21 @@
 
         /* Modern Pretty Button */
         .pretty-btn {
-            display: inline-block;
-            background: linear-gradient(90deg, #2563eb, #1d4ed8);
+            background: linear-gradient(90deg, var(--primary-blue), var(--accent-pink));
             color: #fff;
-            padding: 12px 30px;
             border-radius: 9999px;
+            padding: 12px 30px;
             font-weight: 600;
-            font-size: 1rem;
-            letter-spacing: 0.5px;
-            border: none;
-            outline: none;
             transition: all 0.3s ease;
-            box-shadow: 0 0 10px rgba(37, 99, 235, 0.4);
+            box-shadow: 0 0 15px rgba(37, 99, 235, 0.4);
         }
 
         .pretty-btn:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 0 25px rgba(37, 99, 235, 0.7);
-            background: linear-gradient(90deg, #1e3a8a, #2563eb);
+            transform: scale(1.05) translateY(-3px);
+            box-shadow: 0 0 25px rgba(37, 99, 235, 0.7), 0 0 25px rgba(244, 63, 94, 0.5);
+            background: linear-gradient(90deg, var(--accent-pink), var(--secondary-green));
         }
+
 
         .pretty-btn:active {
             transform: scale(0.98);
@@ -175,7 +234,7 @@
             border-top: 1px solid #2a2c31;
         }
 
-        /* Modal specific styles */
+        /* Modal */
         .modal-content {
             background-color: #121318 !important;
             border: none !important;
@@ -195,7 +254,16 @@
             font-weight: 700;
             margin-bottom: 0.5rem;
             color: white;
+            background: linear-gradient(90deg, var(--primary-blue), var(--accent-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 15px rgba(37, 99, 235, 0.6);
             text-align: center;
+        }
+
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            filter: drop-shadow(0 0 5px var(--primary-blue));
         }
 
         .modal-header hr {
@@ -224,15 +292,6 @@
             line-height: 1.5;
         }
 
-        /* Carousel controls custom */
-        .carousel-control-prev-icon,
-        .carousel-control-next-icon {
-            background-color: #2563eb;
-            border-radius: 50%;
-            padding: 10px;
-            filter: drop-shadow(0 0 2px rgba(37, 99, 235, 0.8));
-        }
-
         .carousel-inner img {
             border-radius: 0 0 1rem 1rem;
             object-fit: cover;
@@ -240,13 +299,23 @@
             width: 100%;
         }
 
-        /* Hero dark line shadow effect */
         #home h1,
         #home p {
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
         }
 
-        /* Contact section two columns */
+        .service-card:hover,
+        .project-card:hover {
+            transform: translateY(-6px) scale(1.05);
+            box-shadow: 0 0 20px var(--primary-blue), 0 0 15px var(--accent-pink);
+        }
+
+        .service-card .icon-bg,
+        .project-card .icon-bg {
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-green));
+        }
+
+        /* Contact layout */
         #contact .contact-container {
             max-width: 1000px;
             margin: 0 auto;
@@ -283,7 +352,6 @@
             line-height: 1.5;
         }
 
-        /* Responsive for smaller devices */
         @media (max-width: 768px) {
             #contact .contact-container {
                 flex-direction: column;
@@ -294,6 +362,114 @@
                 flex: 1 1 100%;
             }
         }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-slide {
+            animation: slideDown 0.3s ease forwards;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .animate-float-delay {
+            animation: float 3s ease-in-out infinite;
+            animation-delay: 1.5s;
+        }
+
+        #service .section-title {
+            background: linear-gradient(90deg, #2563eb, #10b981, #f43f5e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(37, 99, 235, 0.4);
+        }
+
+        /* ===== Mobile Menu Slide Animation ===== */
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-slide {
+            animation: slideDown 0.3s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fadeInUp {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .animate-float-delay {
+            animation: float 3s ease-in-out 0.5s infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        :root {
+            --primary-blue: #2563eb;
+            --secondary-green: #10b981;
+            --accent-pink: #f43f5e;
+            --accent-yellow: #facc15;
+            --text-light: #e5e7eb;
+            --bg-dark: #0b0c0f;
+        }
     </style>
 </head>
 
@@ -301,291 +477,478 @@
     <!-- Navbar -->
     <header class="flex justify-between items-center p-6 bg-[#181a1f] shadow-md sticky top-0 z-50">
         <h1 class="text-2xl font-bold text-white">🎨 Color Effectz</h1>
+        <button id="menu-toggle" class="md:hidden text-gray-400 hover:text-white focus:outline-none">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
+                </path>
+            </svg>
+        </button>
         <nav class="space-x-6 hidden md:flex">
             <a href="#home" class="nav-link active">Home</a>
             <a href="#service" class="nav-link">Service</a>
             <a href="#clients" class="nav-link">Clients</a>
             <a href="#project" class="nav-link">Project</a>
+            <a href="#why-choose-us" class="nav-link">Why Choose</a>
             <a href="#contact" class="nav-link">Contact</a>
         </nav>
     </header>
 
+    <!-- Mobile Menu -->
+    <nav id="mobile-menu"
+        class="hidden md:hidden bg-[#181a1f] px-6 py-4 space-y-2 fixed top-16 left-0 w-full shadow-lg z-40 transition-all duration-300">
+        <a href="#home" class="block nav-link">Home</a>
+        <a href="#service" class="block nav-link">Service</a>
+        <a href="#clients" class="block nav-link">Clients</a>
+        <a href="#project" class="block nav-link">Project</a>
+        <a href="#why-choose-us" class="nav-link">Why Choose</a>
+        <a href="#contact" class="block nav-link">Contact</a>
+    </nav>
+
+
     <!-- Hero -->
     <section id="home"
-        class="h-[70vh] flex flex-col justify-center items-center bg-gradient-to-br from-[#111318] to-[#0b0c0f] text-center px-4">
-        <h1 class="text-5xl font-bold text-white mb-4">Professional Graphic Designer</h1>
-        <p class="text-gray-400 text-lg max-w-xl mb-6">
-            We craft stunning visuals, build brands, and create meaningful digital experiences.
-        </p>
-        <a href="#service" class="btn">Explore My Work</a>
+        class="h-[80vh] flex flex-col justify-center items-center bg-gradient-to-br from-[#0a0c10] via-[#10131a] to-[#0b0c0f] text-center px-6 relative overflow-hidden">
+
+        <!-- glowing background decoration -->
+        <div class="absolute inset-0 overflow-hidden">
+            <div
+                class="absolute top-20 left-1/4 w-72 h-72 bg-blue-600 opacity-20 blur-[100px] rounded-full animate-pulse">
+            </div>
+            <div
+                class="absolute bottom-10 right-1/4 w-64 h-64 bg-indigo-500 opacity-20 blur-[90px] rounded-full animate-pulse">
+            </div>
+        </div>
+
+        <div class="relative z-10">
+            <h1
+                class="text-5xl md:text-6xl font-extrabold mb-6 bg-gradient-to-r from-[#60a5fa] via-[#2563eb] to-[#7c3aed] bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(37,99,235,0.6)]">
+                Creative & Professional <br class="hidden md:block"> Graphic Designer
+            </h1>
+
+            <p class="text-gray-300 text-lg md:text-xl max-w-2xl mx-auto mb-8 leading-relaxed">
+                Turning ideas into stunning visuals. Crafting designs that inspire, captivate, and connect your brand
+                with the world.
+            </p>
+
+            <a href="#service"
+                class="pretty-btn inline-block bg-gradient-to-r from-[#2563eb] to-[#7c3aed] px-8 py-3 rounded-full text-white font-semibold text-lg shadow-lg shadow-blue-500/30 hover:scale-105 hover:shadow-indigo-500/40 transition duration-300 ease-in-out">
+                Explore My Work
+            </a>
+        </div>
     </section>
 
     <!-- Services -->
-    <section id="service" class="py-20 px-6">
-        <h2 class="section-title">Our Services</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            <div class="service-card p-6 text-center">
-                <img src="https://cdn-icons-png.flaticon.com/512/1046/1046899.png" class="w-16 mx-auto mb-4"
-                    alt="Logo Design" />
-                <h3 class="text-lg font-semibold text-white mb-2">Logo Design</h3>
-                <p class="text-gray-400">Creating memorable and effective logos that stand out.</p>
+    <section id="service" class="py-24 px-6 bg-[#0b0c0f] relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-[#1a1c20]/50 to-[#0b0c0f]/80 blur-3xl opacity-30"></div>
+
+        <h2 class="section-title relative z-10 text-4xl font-extrabold tracking-wide mb-16 text-center">✨ Our Services ✨
+        </h2>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 max-w-7xl mx-auto relative z-10">
+            <!-- Card 1 -->
+            <div
+                class="service-card p-8 text-center relative group hover:shadow-[0_0_30px_rgba(37,99,235,0.4)] transition-all duration-500 ease-in-out hover:-translate-y-3 opacity-0 animate-on-scroll">
+                <div
+                    class="absolute inset-0 rounded-2xl bg-gradient-to-r from-[#2563eb] to-[#1d4ed8] opacity-0 group-hover:opacity-20 blur-lg transition-all duration-500">
+                </div>
+                <div class="relative z-10">
+                    <div
+                        class="w-20 h-20 mx-auto mb-6 flex items-center justify-center bg-gradient-to-tr from-[#2563eb] to-[#1d4ed8] rounded-2xl shadow-lg animate-float">
+                        <img src="https://cdn-icons-png.flaticon.com/512/1046/1046899.png" class="w-10"
+                            alt="Logo Design" />
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Logo Design</h3>
+                    <p class="text-gray-400 leading-relaxed">Crafting memorable, professional logos that define your
+                        brand’s identity.</p>
+                </div>
             </div>
-            <div class="service-card p-6 text-center">
-                <img src="https://cdn-icons-png.flaticon.com/512/2913/2913208.png" class="w-16 mx-auto mb-4"
-                    alt="Brand Identity" />
-                <h3 class="text-lg font-semibold text-white mb-2">Brand Identity</h3>
-                <p class="text-gray-400">Building a consistent and engaging brand experience.</p>
+
+            <!-- Card 2 -->
+            <div
+                class="service-card p-8 text-center relative group hover:shadow-[0_0_30px_rgba(16,185,129,0.4)] transition-all duration-500 ease-in-out hover:-translate-y-3 opacity-0 animate-on-scroll delay-100">
+                <div
+                    class="absolute inset-0 rounded-2xl bg-gradient-to-r from-[#10b981] to-[#059669] opacity-0 group-hover:opacity-20 blur-lg transition-all duration-500">
+                </div>
+                <div class="relative z-10">
+                    <div
+                        class="w-20 h-20 mx-auto mb-6 flex items-center justify-center bg-gradient-to-tr from-[#10b981] to-[#059669] rounded-2xl shadow-lg animate-float-delay">
+                        <img src="https://cdn-icons-png.flaticon.com/512/2913/2913208.png" class="w-10"
+                            alt="Brand Identity" />
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Brand Identity</h3>
+                    <p class="text-gray-400 leading-relaxed">Building powerful brand systems that inspire trust and
+                        recognition.</p>
+                </div>
             </div>
-            <div class="service-card p-6 text-center">
-                <img src="https://cdn-icons-png.flaticon.com/512/1324/1324424.png" class="w-16 mx-auto mb-4"
-                    alt="Social Media" />
-                <h3 class="text-lg font-semibold text-white mb-2">Social Media Campaigns</h3>
-                <p class="text-gray-400">Designing vibrant visuals for social media marketing.</p>
+
+            <!-- Card 3 -->
+            <div
+                class="service-card p-8 text-center relative group hover:shadow-[0_0_30px_rgba(244,63,94,0.4)] transition-all duration-500 ease-in-out hover:-translate-y-3 opacity-0 animate-on-scroll delay-200">
+                <div
+                    class="absolute inset-0 rounded-2xl bg-gradient-to-r from-[#f43f5e] to-[#be123c] opacity-0 group-hover:opacity-20 blur-lg transition-all duration-500">
+                </div>
+                <div class="relative z-10">
+                    <div
+                        class="w-20 h-20 mx-auto mb-6 flex items-center justify-center bg-gradient-to-tr from-[#f43f5e] to-[#be123c] rounded-2xl shadow-lg animate-float">
+                        <img src="https://cdn-icons-png.flaticon.com/512/1324/1324424.png" class="w-10"
+                            alt="Social Media Campaigns" />
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Social Media Campaigns</h3>
+                    <p class="text-gray-400 leading-relaxed">Designing engaging visuals that amplify your social
+                        presence.</p>
+                </div>
             </div>
         </div>
     </section>
 
+
     <!-- Clients -->
-    <section id="clients" class="py-20 px-6 bg-[#121318]">
-        <h2 class="section-title">Clients</h2>
-        <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-6 max-w-6xl mx-auto">
-            <img class="client-logo" src="https://meridianholidaysbd.com/uploads/grouptour/grouptour_1760681574.jpg"
-                alt="Instagram" />
-            <img class="client-logo" src="https://meridianholidaysbd.com/uploads/grouptour/grouptour_1760681574.jpg"
-                alt="Facebook" />
-            <img class="client-logo" src="https://meridianholidaysbd.com/uploads/grouptour/grouptour_1760681574.jpg"
-                alt="Netflix" />
-            <img class="client-logo" src="https://meridianholidaysbd.com/uploads/grouptour/grouptour_1760681574.jpg"
-                alt="Google" />
-            <img class="client-logo" src="https://meridianholidaysbd.com/uploads/grouptour/grouptour_1760681574.jpg"
-                alt="Apple" />
-            <img class="client-logo" src="https://meridianholidaysbd.com/uploads/grouptour/grouptour_1760681574.jpg"
-                alt="AWS" />
+    <section id="clients" class="py-24 px-6 bg-[#121318] relative overflow-hidden">
+        <!-- Background Glow -->
+        <div class="absolute inset-0 bg-gradient-to-br from-[#2563eb]/20 to-[#1d4ed8]/20 blur-3xl opacity-30"></div>
+
+        <h2 class="section-title relative z-10 text-4xl font-extrabold tracking-wide mb-16 text-center">💼 Our Clients
+            💼</h2>
+
+        <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-6 max-w-6xl mx-auto relative z-10">
+            <img class="client-logo opacity-0 animate-on-scroll hover:scale-110 transition-transform duration-500"
+                src="https://meridianholidaysbd.com/uploads/grouptour/grouptour_1760681574.jpg" alt="Client 1" />
+            <img class="client-logo opacity-0 animate-on-scroll hover:scale-110 transition-transform duration-500 delay-100"
+                src="https://meridianholidaysbd.com/uploads/grouptour/grouptour_1760681574.jpg" alt="Client 2" />
+            <img class="client-logo opacity-0 animate-on-scroll hover:scale-110 transition-transform duration-500 delay-200"
+                src="https://meridianholidaysbd.com/uploads/grouptour/grouptour_1760681574.jpg" alt="Client 3" />
+            <img class="client-logo opacity-0 animate-on-scroll hover:scale-110 transition-transform duration-500 delay-300"
+                src="https://meridianholidaysbd.com/uploads/grouptour/grouptour_1760681574.jpg" alt="Client 4" />
+            <img class="client-logo opacity-0 animate-on-scroll hover:scale-110 transition-transform duration-500 delay-400"
+                src="https://meridianholidaysbd.com/uploads/grouptour/grouptour_1760681574.jpg" alt="Client 5" />
+            <img class="client-logo opacity-0 animate-on-scroll hover:scale-110 transition-transform duration-500 delay-500"
+                src="https://meridianholidaysbd.com/uploads/grouptour/grouptour_1760681574.jpg" alt="Client 6" />
+        </div>
+
+        <div class="text-center mt-12 relative z-10">
+            <button type="button" class="pretty-btn hover:scale-105 hover:shadow-lg transition-transform duration-300">
+                More Clients
+            </button>
         </div>
     </section>
 
     <!-- Projects -->
-    <section id="project" class="py-20 px-6">
-        <h2 class="section-title">Projects</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 max-w-6xl mx-auto">
+    <section id="project" class="py-24 px-6 bg-[#0b0c0f] relative overflow-hidden">
+        <!-- Background Glow -->
+        <div class="absolute inset-0 bg-gradient-to-br from-[#1a1c20]/50 to-[#0b0c0f]/80 blur-3xl opacity-30"></div>
 
-            <div class="project-card" data-bs-toggle="modal" data-bs-target="#projectModal1" tabindex="0" role="button"
-                aria-label="Open project Brand Identity">
-                <img src="https://picsum.photos/400/300?random=9" alt="Brand Identity Project" />
-                <div class="project-name">Brand Identity</div>
+        <h2 class="section-title relative z-10 text-4xl font-extrabold tracking-wide mb-16 text-center">🚀 Projects
+        </h2>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 max-w-7xl mx-auto relative z-10">
+            <!-- Project Card 1 -->
+            <div class="project-card relative group cursor-pointer overflow-hidden rounded-2xl shadow-lg hover:shadow-[0_0_30px_rgba(37,99,235,0.5)] transition-all duration-500 ease-in-out hover:-translate-y-3"
+                data-bs-toggle="modal" data-bs-target="#projectModal1" tabindex="0">
+                <img src="https://picsum.photos/400/300?random=9" alt="Brand Identity Project"
+                    class="rounded-2xl transition-transform duration-500 group-hover:scale-105" />
+                <div
+                    class="project-name absolute bottom-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-[#2563eb]/80 to-[#1d4ed8]/80 text-white px-4 py-2 rounded-full text-sm font-semibold backdrop-blur-sm shadow-lg">
+                    Brand Identity
+                </div>
             </div>
 
-            <div class="project-card" data-bs-toggle="modal" data-bs-target="#projectModal2" tabindex="0" role="button"
-                aria-label="Open project Social Media Campaign">
-                <img src="https://picsum.photos/400/300?random=12" alt="Social Media Campaign Project" />
-                <div class="project-name">Social Media Campaign</div>
+            <!-- Project Card 2 -->
+            <div class="project-card relative group cursor-pointer overflow-hidden rounded-2xl shadow-lg hover:shadow-[0_0_30px_rgba(16,185,129,0.5)] transition-all duration-500 ease-in-out hover:-translate-y-3"
+                data-bs-toggle="modal" data-bs-target="#projectModal2" tabindex="0">
+                <img src="https://picsum.photos/400/300?random=12" alt="Social Media Campaign Project"
+                    class="rounded-2xl transition-transform duration-500 group-hover:scale-105" />
+                <div
+                    class="project-name absolute bottom-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-[#10b981]/80 to-[#059669]/80 text-white px-4 py-2 rounded-full text-sm font-semibold backdrop-blur-sm shadow-lg">
+                    Social Media Campaign
+                </div>
             </div>
 
-            <div class="project-card" data-bs-toggle="modal" data-bs-target="#projectModal3" tabindex="0" role="button"
-                aria-label="Open project Website Redesign">
-                <img src="https://picsum.photos/400/300?random=14" alt="Website Redesign Project" />
-                <div class="project-name">Website Redesign</div>
+            <!-- Project Card 3 -->
+            <div class="project-card relative group cursor-pointer overflow-hidden rounded-2xl shadow-lg hover:shadow-[0_0_30px_rgba(244,63,94,0.5)] transition-all duration-500 ease-in-out hover:-translate-y-3"
+                data-bs-toggle="modal" data-bs-target="#projectModal3" tabindex="0">
+                <img src="https://picsum.photos/400/300?random=14" alt="Website Redesign Project"
+                    class="rounded-2xl transition-transform duration-500 group-hover:scale-105" />
+                <div
+                    class="project-name absolute bottom-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-[#f43f5e]/80 to-[#be123c]/80 text-white px-4 py-2 rounded-full text-sm font-semibold backdrop-blur-sm shadow-lg">
+                    Website Redesign
+                </div>
             </div>
+        </div>
+
+        <div class="text-center mt-12 relative z-10">
+            <button type="button" class="pretty-btn hover:scale-105 hover:shadow-lg transition-transform duration-300">
+                More Projects
+            </button>
         </div>
     </section>
 
-    <!-- Project Modals -->
+    <!-- Modal Example for Project 1 -->
     <div class="modal fade" id="projectModal1" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Brand Identity</h5>
-                    <hr />
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="modal-content bg-[#121318] rounded-2xl shadow-lg border-none">
+                <div class="modal-header flex flex-col items-center border-b-0 relative">
+                    <h5 class="modal-title text-2xl font-bold text-white mb-2">Brand Identity</h5>
+                    <hr class="w-16 border-t-4 border-[#2563eb] rounded-full mb-4 opacity-80" />
+                    <button type="button" class="btn-close absolute top-4 right-4" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body text-center">
-                    <div id="carouselProject1" class="carousel slide" data-bs-ride="carousel">
-                        <div class="carousel-inner">
+                    <div id="carouselProject1" class="carousel slide rounded-2xl overflow-hidden shadow-lg"
+                        data-bs-ride="carousel">
+                        <div class="carousel-inner rounded-2xl">
                             <div class="carousel-item active">
-                                <img src="https://picsum.photos/900/600?random=9" alt="Project Slide 1" />
+                                <img src="https://picsum.photos/900/600?random=9" alt="Slide 1" class="rounded-2xl" />
                             </div>
                             <div class="carousel-item">
-                                <img src="https://picsum.photos/900/600?random=10" alt="Project Slide 2" />
+                                <img src="https://picsum.photos/900/600?random=10" alt="Slide 2" class="rounded-2xl" />
                             </div>
                             <div class="carousel-item">
-                                <img src="https://picsum.photos/900/600?random=11" alt="Project Slide 3" />
+                                <img src="https://picsum.photos/900/600?random=11" alt="Slide 3" class="rounded-2xl" />
                             </div>
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselProject1"
                             data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
                         </button>
                         <button class="carousel-control-next" type="button" data-bs-target="#carouselProject1"
                             data-bs-slide="next">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
                         </button>
                     </div>
-                    <p>
-                        This brand identity project involved crafting a modern and clean look that reflects the
-                        client's vision.
-                    </p>
+                    <p class="mt-4 text-gray-400 text-lg leading-relaxed">This brand identity project involved crafting
+                        a modern and clean look that reflects the client's vision.</p>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="modal fade" id="projectModal2" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Social Media Campaign</h5>
-                    <hr />
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body text-center">
-                    <div id="carouselProject2" class="carousel slide" data-bs-ride="carousel">
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img src="https://picsum.photos/900/600?random=12" alt="Project Slide 1" />
-                            </div>
-                            <div class="carousel-item">
-                                <img src="https://picsum.photos/900/600?random=13" alt="Project Slide 2" />
-                            </div>
-                        </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselProject2"
-                            data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselProject2"
-                            data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                        </button>
-                    </div>
-                    <p>
-                        A vibrant social media campaign designed to boost engagement and brand awareness.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
+    <!-- Why Choose Us -->
+    <section id="why-choose-us" class="py-24 px-6 bg-[#0b0c0f] relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-[#1a1c20]/40 to-[#0b0c0f]/80 blur-3xl opacity-20"></div>
+        <div class="relative z-10 max-w-7xl mx-auto text-center">
+            <h2 class="section-title text-4xl font-extrabold mb-16">💡 Why Choose Us</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
 
-    <div class="modal fade" id="projectModal3" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Website Redesign</h5>
-                    <hr />
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body text-center">
-                    <div id="carouselProject3" class="carousel slide" data-bs-ride="carousel">
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img src="https://picsum.photos/900/600?random=14" alt="Project Slide 1" />
-                            </div>
-                            <div class="carousel-item">
-                                <img src="https://picsum.photos/900/600?random=15" alt="Project Slide 2" />
-                            </div>
-                        </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselProject3"
-                            data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselProject3"
-                            data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                        </button>
-                    </div>
-                    <p>
-                        Full website redesign for a sleek, responsive, and modern user experience.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Contact -->
-    <section id="contact" class="py-20 bg-[#111318]">
-        <h2 class="section-title">Contact Me</h2>
-        <div class="contact-container">
-            <!-- Left: Form -->
-            <form class="contact-form" id="contactForm" novalidate>
-                <div class="mb-6">
-                    <label for="name" class="block mb-2 font-semibold text-white">Name</label>
-                    <input type="text" id="name" name="name" required class="p-2" placeholder="Your full name" />
-                </div>
-                <div class="mb-6">
-                    <label for="email" class="block mb-2 font-semibold text-white">Email</label>
-                    <input type="email" id="email" name="email" class="p-2" required
-                        placeholder="your.email@example.com" />
-                </div>
-                <div class="mb-6">
-                    <label for="phone" class="block mb-2 font-semibold text-white">Phone</label>
-                    <input type="tel" id="phone" name="phone" class="p-2" placeholder="+1 (555) 123-4567" />
-                </div>
-                <div class="mb-6">
-                    <label for="address" class="block mb-2 font-semibold text-white">Address</label>
-                    <input type="text" id="address" class="p-2" name="address" placeholder="Your address" />
-                </div>
-                <div class="mb-6">
-                    <label for="message" class="block mb-2 font-semibold text-white">Message</label>
-                    <textarea id="message" name="message" class="p-2" rows="5" placeholder="Write your message here..."
-                        required></textarea>
-                </div>
-                <div class="text-center">
-                    <button type="submit" class="pretty-btn">Send Message</button>
-                </div>
-            </form>
-
-            <!-- Right: Contact info + Hero banner -->
-            <div class="contact-info px-4">
-                <h3>Get in Touch</h3>
-                <p>Email: <a href="mailto:contact@coloreffectz.com"
-                        class="text-blue-500 hover:underline">contact@coloreffectz.com</a></p>
-                <p>Phone: <a href="tel:+15551234567" class="text-blue-500 hover:underline">+1 (555) 123-4567</a></p>
-                <p>Address: 123 Color St., Design City, Creative Country</p>
-
+                <!-- Card 1 -->
                 <div
-                    class="mt-10 bg-gradient-to-r from-blue-600 via-blue-500 to-blue-700 rounded-lg p-6 shadow-lg text-white">
-                    <h4 class="text-2xl font-bold mb-3">Let's Create Something Amazing Together</h4>
-                    <p class="text-lg leading-relaxed">Whether you have a project idea or just want to say hello, I’m
-                        here to bring your vision to life with creativity and passion.</p>
+                    class="service-card p-8 rounded-2xl text-center relative group hover:shadow-[0_0_40px_rgba(37,99,235,0.5)] transition-all duration-500 ease-in-out hover:-translate-y-4">
+                    <div
+                        class="absolute inset-0 rounded-2xl bg-gradient-to-r from-[#2563eb] to-[#1d4ed8] opacity-0 group-hover:opacity-25 blur-xl transition-all duration-500">
+                    </div>
+                    <div class="relative z-10">
+                        <div
+                            class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-gradient-to-tr from-[#2563eb] to-[#1d4ed8] rounded-full shadow-lg animate-float">
+                            <img src="https://cdn-icons-png.flaticon.com/512/1006/1006557.png" class="w-8"
+                                alt="Quality" />
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">High Quality</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">We deliver top-notch designs that impress and
+                            convert.</p>
+                    </div>
                 </div>
+
+                <!-- Card 2 -->
+                <div
+                    class="service-card p-8 rounded-2xl text-center relative group hover:shadow-[0_0_40px_rgba(16,185,129,0.5)] transition-all duration-500 ease-in-out hover:-translate-y-4">
+                    <div
+                        class="absolute inset-0 rounded-2xl bg-gradient-to-r from-[#10b981] to-[#059669] opacity-0 group-hover:opacity-25 blur-xl transition-all duration-500">
+                    </div>
+                    <div class="relative z-10">
+                        <div
+                            class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-gradient-to-tr from-[#10b981] to-[#059669] rounded-full shadow-lg animate-float-delay">
+                            <img src="https://cdn-icons-png.flaticon.com/512/992/992700.png" class="w-8"
+                                alt="Expert Team" />
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Expert Team</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">A skilled team dedicated to bringing your
+                            vision to life.</p>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div
+                    class="service-card p-8 rounded-2xl text-center relative group hover:shadow-[0_0_40px_rgba(244,63,94,0.5)] transition-all duration-500 ease-in-out hover:-translate-y-4">
+                    <div
+                        class="absolute inset-0 rounded-2xl bg-gradient-to-r from-[#f43f5e] to-[#be123c] opacity-0 group-hover:opacity-25 blur-xl transition-all duration-500">
+                    </div>
+                    <div class="relative z-10">
+                        <div
+                            class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-gradient-to-tr from-[#f43f5e] to-[#be123c] rounded-full shadow-lg animate-float">
+                            <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" class="w-8"
+                                alt="Creative Ideas" />
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Creative Ideas</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">Innovative and unique concepts tailored for
+                            your brand.</p>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div
+                    class="service-card p-8 rounded-2xl text-center relative group hover:shadow-[0_0_40px_rgba(250,204,21,0.5)] transition-all duration-500 ease-in-out hover:-translate-y-4">
+                    <div
+                        class="absolute inset-0 rounded-2xl bg-gradient-to-r from-[#facc15] to-[#eab308] opacity-0 group-hover:opacity-25 blur-xl transition-all duration-500">
+                    </div>
+                    <div class="relative z-10">
+                        <div
+                            class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-gradient-to-tr from-[#facc15] to-[#eab308] rounded-full shadow-lg animate-float-delay">
+                            <img src="https://cdn-icons-png.flaticon.com/512/2910/2910765.png" class="w-8"
+                                alt="Fast Delivery" />
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Fast Delivery</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">Timely project delivery without compromising on
+                            quality.</p>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
 
+
+    <!-- Contact -->
+    <section id="contact" class="py-24 px-6 bg-[#0b0c0f] relative overflow-hidden">
+        <!-- Background Glow -->
+        <div class="absolute inset-0 bg-gradient-to-br from-[#1a1c20]/50 to-[#0b0c0f]/80 blur-3xl opacity-30"></div>
+
+        <h2 class="section-title relative z-10 text-4xl font-extrabold tracking-wide mb-16 text-center">📩 Contact Me
+        </h2>
+
+        <div class="contact-container relative z-10 max-w-6xl mx-auto flex flex-wrap gap-12">
+            <!-- Contact Form -->
+            <form
+                class="contact-form flex-1 min-w-[320px] bg-[#121318]/80 backdrop-blur-md rounded-2xl p-8 shadow-lg transition-all duration-500 hover:shadow-[0_0_30px_rgba(37,99,235,0.4)]"
+                id="contactForm" novalidate>
+                <div class="mb-6 relative">
+                    <input type="text" id="name" name="name" required
+                        class="form-control peer bg-transparent border-b-2 border-gray-600 text-white w-full px-2 py-2 px-1 focus:border-[#2563eb] focus:outline-none transition-all"
+                        placeholder=" " />
+                    <label for="name"
+                        class="absolute left-1 top-2 text-gray-400 peer-placeholder-shown:top-2 peer-placeholder-shown:text-gray-500 peer-placeholder-shown:text-base peer-focus:-top-4 peer-focus:text-[#2563eb] peer-focus:text-sm font-medium transition-all">Name</label>
+                </div>
+
+                <div class="mb-6 relative">
+                    <input type="email" id="email" name="email" required
+                        class="form-control peer bg-transparent border-b-2 border-gray-600 text-white w-full py-2 px-1 focus:border-[#2563eb] focus:outline-none transition-all"
+                        placeholder=" " />
+                    <label for="email"
+                        class="absolute left-1 top-2 text-gray-400 peer-placeholder-shown:top-2 peer-placeholder-shown:text-gray-500 peer-placeholder-shown:text-base peer-focus:-top-4 peer-focus:text-[#2563eb] peer-focus:text-sm font-medium transition-all">Email</label>
+                </div>
+
+                <div class="mb-6 relative">
+                    <textarea id="message" name="message" rows="5" required
+                        class="form-control peer bg-transparent border-b-2 border-gray-600 text-white w-full py-2 px-1 focus:border-[#2563eb] focus:outline-none transition-all"
+                        placeholder=" "></textarea>
+                    <label for="message"
+                        class="absolute left-1 top-2 text-gray-400 peer-placeholder-shown:top-2 peer-placeholder-shown:text-gray-500 peer-placeholder-shown:text-base peer-focus:-top-4 peer-focus:text-[#2563eb] peer-focus:text-sm font-medium transition-all">Message</label>
+                </div>
+
+                <button type="submit"
+                    class="pretty-btn w-full text-center mt-4 hover:scale-105 hover:shadow-lg transition-transform duration-300">Send
+                    Message</button>
+            </form>
+
+            <!-- Contact Info -->
+            <div
+                class="contact-info flex-1 min-w-[280px] bg-[#121318]/80 backdrop-blur-md rounded-2xl p-8 shadow-lg flex flex-col justify-center text-gray-300 transition-all duration-500 hover:shadow-[0_0_30px_rgba(37,99,235,0.4)]">
+                <h3 class="text-2xl font-bold text-[#2563eb] mb-4">Let's Talk</h3>
+                <p class="mb-3"><strong>Email:</strong> hello@coloreffectz.com</p>
+                <p class="mb-3"><strong>Phone:</strong> +880 1234 567890</p>
+                <p class="mb-3"><strong>Address:</strong> Dhaka, Bangladesh</p>
+                <p class="mt-4 text-gray-400">Feel free to reach out for collaborations or just a friendly hello 👋</p>
+            </div>
+        </div>
+    </section>
+
+
     <!-- Footer -->
-    <footer class="py-6 px-6 text-center text-gray-500 text-sm">
-        &copy; 2025 Color Effectz. All rights reserved.
+    <footer class="py-6 text-center text-gray-400 bg-[#0b0c0f] border-t border-gray-800">
+        <p>&copy; 2025 Color Effectz. All rights reserved.</p>
+        <p class="mt-1 text-sm text-gray-500">Developed with 💙 by <strong>Md Najmul Hasan</strong></p>
     </footer>
 
+
     <script>
-        // Simple form validation for demonstration
-        document.getElementById('contactForm').addEventListener('submit', function (e) {
+        // ===== Mobile menu toggle =====
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuToggle.addEventListener('click', () => {
+            if (mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.remove('hidden');
+                mobileMenu.classList.add('animate-slide');
+            } else {
+                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('animate-slide');
+            }
+        });
+
+        // ===== Close mobile menu when a link is clicked =====
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('animate-slide');
+            });
+        });
+
+        // ===== Smooth scroll active link highlight =====
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('nav a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                if (scrollY >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // ===== Contact form simple validation (demo) =====
+        const form = document.getElementById('contactForm');
+        form.addEventListener('submit', (e) => {
             e.preventDefault();
-            const form = e.target;
-
-            if (!form.name.value.trim()) {
-                alert('Please enter your name.');
-                form.name.focus();
-                return;
-            }
-            if (!form.email.value.trim()) {
-                alert('Please enter your email.');
-                form.email.focus();
-                return;
-            }
-            if (!form.message.value.trim()) {
-                alert('Please enter your message.');
-                form.message.focus();
-                return;
-            }
-
-            alert('Thank you for your message!');
+            alert('Message sent! (Demo)');
             form.reset();
         });
+    </script>
+
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fadeInUp');
+                    entry.target.classList.remove('opacity-0');
+                }
+            });
+        }, {
+            threshold: 0.2
+        });
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+    </script>
+    <!-- Scroll Animation JS -->
+    <script>
+        const clientObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fadeInUp');
+                    entry.target.classList.remove('opacity-0');
+                }
+            });
+        }, {
+            threshold: 0.2
+        });
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => clientObserver.observe(el));
     </script>
 </body>
 
